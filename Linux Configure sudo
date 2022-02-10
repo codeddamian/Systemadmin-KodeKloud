@@ -1,0 +1,23 @@
+We have some users on all app servers in Stratos Datacenter. 
+Some of them have been assigned some new roles and responsibilities, therefore their users need to be upgraded with sudo access so that they can perform admin level tasks.
+
+a. Provide sudo access to user ravi on all app servers.
+
+b. Make sure you have set up password-less sudo for the user.
+
+Reference Link - https://www.atlantic.net/vps-hosting/how-to-setup-passwordless-sudo-for-a-specific-user/
+
+First we have to check if the user is there or not by entereing 
+id ravi
+that will show if the user is present or not. 
+
+we have to edit sudoers file in every server.
+cat /etc/sudoers | grep ravi
+vi /etc/sudoers 
+open the file entry in the last these line
+
+yousuf      ALL=(ALL)  NOPASSWD
+
+after that type command 
+su ravi 
+this command gives login to user without password less login.
