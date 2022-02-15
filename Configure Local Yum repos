@@ -1,0 +1,76 @@
+The Nautilus production support team and security team had a meeting last month in which they decided to use local yum repositories
+for maintaing packages needed for their servers. For now they have decided to configure a local yum repo on Nautilus Backup Server.
+This is one of the pending items from last month, 
+so please configure a local yum repository on Nautilus Backup Server as per details given below.
+
+a. We have some packages already present at location /packages/downloaded_rpms/ on Nautilus Backup Server.
+
+b. Create a yum repo named epel_local and make sure to set Repository ID to epel_local. Configure it to use package's location /packages/downloaded_rpms/.
+
+c. Install package vim-enhanced from this newly created repo.
+
+Answer:
+
+#ssh to backup server
+
+    ssh <user>@<server> 
+
+#switch to root user ->   sudo su 
+
+#as per question some packages already present at location /packages/downloaded_rpms/ , verify it
+
+    ls /packages/downloaded_rpms/
+
+* you will see the list of already available packages ( note that you can see the available rpm of question C ( in my case which wget rpm)
+
+
+
+# below commands to check already a yum repository is available or not
+
+    yum repolist 
+
+* you will not see any available repo details 
+
+------------------
+
+Create a Repo
+
+------------------
+
+# as per the question need to create a repo named as epel_local and set the ID also same.( check your question)
+
+# navigate to the /etc/yum.repos.d location 
+
+    cd /etc/yum.repos.d
+
+# create a repo with the name 
+
+    vi epel_local.repo
+
+press i to insert mode and paste below ( make sure the name of your repo as given in the question)
+
+    [epel_yum]
+    name=epel_local
+    baseurl=file:///packages/downloaded_rpms/
+    enabled = 1
+    gpgcheck = 0
+press Esc and wq! to save and close 
+
+# Now verify again using the yum repolist command 
+
+    yum repolist 
+
+
+    
+# now let's do question C part  (in my case, Install package vim-enhanced from this newly created repo.)
+    yum cleanall repo 
+    yum repolist 
+    yum install --disablerepo="*" --enablerepo=“epel_yum” httpd or vim 
+
+#let's verify 
+
+    rpm -aq vim
+
+#now do the yum repo list 
+
+    yum repolist 
