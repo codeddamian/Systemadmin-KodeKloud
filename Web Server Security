@@ -25,7 +25,10 @@ To hide web server version number, server operating system details, installed Ap
       Options -Indexes
 </Directory>
    13  sudo vi /etc/httpd/conf/httpd.conf       --CHANGE AllowOverride None to All (AllowOverride All) in <Directory "/var/www/html">
+   14 vim /etc/httpd/conf/httpd.conf
+Then find the line: Options Indexes FollowSymLinks
 
+Change that line to: Options FollowSymLinks
 ** While using the .htaccess, make sure that Apache server is enabled to use .htaccess files for that directory. In most cases, .htaccess is disabled by default,
 to enable allowoverride to all
 ** The first directory tag will disable using of .htaccess in /var/www directory. The second directory tag will enable the use of .htaccess under /var/www/html directory.
