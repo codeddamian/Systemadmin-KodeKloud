@@ -1,0 +1,27 @@
+The production support team of xFusionCorp Industries has deployed some of the latest monitoring tools to keep an eye on every service, application, etc. running on the systems. One of the monitoring systems reported about Apache service unavailability on one of the app servers in Stratos DC.
+
+Identify the faulty app host and fix the issue. Make sure Apache service is up and running on all app hosts
+. They might not hosted any code yet on these servers so you need not to worry about if Apache isn't serving any pages or not, 
+just make sure service is up and running. Also, make sure Apache is running on port 3000
+on all app servers.
+
+
+
+STEPS IN ALL APP SERVER FIRST CHECK HTTPD
+----------------------------------------------
+    1  systemctl start httpd
+    2  systemctl status httpd -l
+    
+    3 ystemctl enable httpd
+    4  netstat -ntpl
+    5  kill 255                  -CHECK PROCESSID(PID USING netstat -ntpl command
+    6  systemctl start httpd
+    7  systemctl enable httpd
+    8  netstat -ntpl
+    9  curl localhost:6200
+    
+    
+    credit:
+    
+    https://lynxbee.com/solved-systemd1-failed-to-start-the-apache-http-server/#.YiH8iS2l2u4
+    https://github.com/chmvreddy/kodekloud/blob/master/Linux%20Process%20Troubleshooting%20(apache).txt
