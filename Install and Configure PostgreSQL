@@ -1,0 +1,66 @@
+#login to DB server
+
+    ssh <user>@<<DB-server-IP>
+
+#switch to root user
+
+    sudo su 
+
+#install postgresql
+
+    yum -y install postgresql-server postgresql-contrib
+
+#initiate DB setup
+
+    postgresql-setup initdb
+
+#enable and start postgresql servcie
+
+    systemctl enable postgresql 
+
+    systemctl start postgresql
+
+#let's Create user, database, and grant permission
+
+    sudo -u postgres psql
+
+CREATE USER <user_from_your question> WITH PASSWORD '<password_from_your question>';
+
+CREATE <DB_from_your question>;
+
+GRANT ALL PRIVILEGES ON DATABASE "<DB_from_your question>" to <user_from_your question>;
+
+type \q to exit from pgsql 
+
+#now do the configuration changes 
+
+    vi /var/lib/pgsql/data/postgresql.conf
+
+            Uncomment below line
+
+            listen_addresses = 'localhost' 
+
+#another config change
+
+       vi /var/lib/pgsql/data/pg_hba.conf
+
+#Go to bottom of the config and edit as below
+
+        local all all md5
+
+        host all all 127.0.0.1/32 md5 
+
+#restart psql service and check status
+
+    systemctl restart postgresql
+
+    systemctl status postgresql
+
+
+
+#Testing 
+
+psql -U <user_from your _question> -d <DB_from_your_question> -h 127.0.0.1 -W
+
+psql -U <user_from your _question> -d <DB_from_your_question> -h localhost -W
+
