@@ -1,4 +1,17 @@
-#login to DB server
+
+As per details shared by Nautilus application development team. they are planning to deploy one newly developed application on Nautilus infra in Stratos DC.
+Application uses PostgreSQL database. So as a pre-requisite we need to setup PostgreSQL database server as per requirements shared below:
+
+
+a. Install and configure PostgreSQL database on Nautilus database server.
+
+b. Create a database user kodekloud_tim and set its password to YchZHRcLkL.
+
+c. Create a database kodekloud_db8 and grant full permissions to user kodekloud_tim on this database.
+
+d. Make appropriate settings to allow all local clients (local socket connections) to connect to the kodekloud_db7 database through kodekloud_tim user using md5 encrypted password for authentication.
+
+e. At the end its good to test the db connection using these new credentials from root user or server's sudo user.#login to DB server
 
     ssh <user>@<<DB-server-IP>
 
