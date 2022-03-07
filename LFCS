@@ -1,2 +1,16 @@
-Move files from A to B
+1a. Move files from A to B
 printf '%s\n' '29m0' 'wq' | ed -s edit.txt.                  { from line 29 to the first line } 
+
+1b. Delete Line 38 
+sed -i -e "37d" editme.txt
+
+1c Replace the word food to drink
+sed -i 's/food/drink/g' edit.txt 
+
+
+1d. Add the word Aurolo varili to the last word to the text
+echo "Aurolo varili" >> edit.txt 
+
+
+`
+
