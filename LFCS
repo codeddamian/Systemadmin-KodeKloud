@@ -1,0 +1,2 @@
+Move files from A to B
+printf '%s\n' '29m0' 'wq' | ed -s edit.txt.                  { from line 29 to the first line } 
