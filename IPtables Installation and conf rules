@@ -1,0 +1,28 @@
+We have one of our website up and running on our Nautilus infrastructure in Stratos DC. Our security team has raised a concern that right now Apache’s port i.e 8082 is open for all since there is no firewall installed on these hosts. So we have decided to add some security layer for these hosts and after discussions and recommendations we have come up with below given requirements:
+
+   1  Install iptables and all its dependencies on each app host.
+
+   2  Block incoming port 8082 on all apps for everyone except for LBR host.
+
+   3  Make sure the rules should persist even after system reboot.
+
+SAME PROCEDURES FOR ALL APP SERVERS
+
+   1  sudo yum install iptables-services -y
+   2  sudo systemctl start iptables
+   3  sudo systemctl enable iptables
+   4  sudo systemctl status iptables
+   5  sudo iptables -l 
+        
+   6  sudo iptables -R INPUT 5 -p tcp --dport 8082 -s 172.16.238.14 -j ACCEPT      --HERE IT REPLACED AND destination port  LBR SERVER IP ADRESS WHICH ADDRESS WE WANT TO ALLOW GIVE IT HERE
+   7  sudo iptables -A INPUT -p tcp --dport 8082 -j DROP
+   8  sudo service iptables save
+   9  curl 172.16.238.10:5002
+   
+
+
+
+TEST with LBR server:
+curl 172.16.238.10:8082
+curl 172.16.238.11:8082
+curl 172.16.238.12:8082
