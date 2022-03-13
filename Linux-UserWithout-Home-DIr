@@ -1,0 +1,5 @@
+Create a user withut a home directory
+
+#Answer
+Sudo useradd -M <Username>
+Sudo useradd --no-create-home <username>
