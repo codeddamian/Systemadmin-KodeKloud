@@ -37,3 +37,7 @@ sudo iptables -A INPUT -p tcp --dport 6300 -m conntrack --ctstate NEW -j REJECT
    18  iptables -nvL            -- FOR CHECKING PORTS
    19  iptable-save             -- FOR CHECKING PORTS
    
+   
+   
+   Readmore: https://www.digitalocean.com/community/tutorials/how-to-list-and-delete-iptables-firewall-rules
+   
